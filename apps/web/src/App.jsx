@@ -41,7 +41,8 @@ function Section({ title, subtitle, children, action }) {
 }
 
 export default function App() {
-  const [activePage, setActivePage] = useState("Home");
+  const initialPage = getCurrentUser() ? "Home" : "Auth";
+  const [activePage, setActivePage] = useState(initialPage);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [user, setUser] = useState(null);
   const [authMode, setAuthMode] = useState("login");
@@ -206,6 +207,7 @@ export default function App() {
   function handleLogout() {
     logout();
     setUser(null);
+    setActivePage("Auth");
     setAuthMessage("Logged out.");
     setSettingsMessage("");
     setMobileNavOpen(false);
@@ -338,6 +340,7 @@ export default function App() {
     refresh();
   }
 
+  const currentPage = user ? activePage : "Auth";
   const activeTheme = user ? settingsPreferences.theme : "sunrise";
   const compactMode = user ? settingsPreferences.darkCards : false;
 
@@ -358,23 +361,25 @@ export default function App() {
             <span />
           </button>
         </div>
-        <nav className={`nav ${mobileNavOpen ? "nav-open" : ""}`}>
-          {navItems.map((item) => (
-            <button key={item} className={activePage === item ? "nav-link active" : "nav-link"} onClick={() => handleNavigate(item)}>
-              {item}
-            </button>
-          ))}
-        </nav>
-        <div className="user-box">
-          {user ? (
-            <>
+        {user ? (
+          <>
+            <nav className={`nav ${mobileNavOpen ? "nav-open" : ""}`}>
+              {navItems.map((item) => (
+                <button key={item} className={activePage === item ? "nav-link active" : "nav-link"} onClick={() => handleNavigate(item)}>
+                  {item}
+                </button>
+              ))}
+            </nav>
+            <div className="user-box">
               <span>{user.name} - {user.role}</span>
               <button className="button ghost" onClick={handleLogout}>Logout</button>
-            </>
-          ) : (
+            </div>
+          </>
+        ) : (
+          <div className="user-box">
             <button className="button dark" onClick={() => handleNavigate("Auth")}>Sign in</button>
-          )}
-        </div>
+          </div>
+        )}
       </header>
 
       <main className="container">
@@ -787,7 +792,7 @@ export default function App() {
           )
         )}
 
-        {activePage === "Auth" && (
+        {currentPage === "Auth" && (
           <div className="two-column">
             <Section title="Authentication" subtitle="Local account access">
               <p className="message">This version stores demo accounts and session state in browser localStorage.</p>

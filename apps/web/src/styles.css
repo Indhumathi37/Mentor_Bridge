@@ -107,7 +107,7 @@ button, input, textarea, select { font: inherit; }
   gap: 12px;
 }
 
-.brand { font-size: 28px; font-weight: 700; color: var(--brand); }
+.brand { font-size: 36px; font-weight: 700; color: var(--brand); }
 .nav {
   display: flex;
   flex-wrap: wrap;
@@ -449,7 +449,7 @@ textarea { min-height: 120px; resize: vertical; }
   }
 
   .brand {
-    font-size: 24px;
+    font-size: 32px;
   }
 
   .hamburger {
