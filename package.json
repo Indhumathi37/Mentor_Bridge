@@ -1,0 +1,13 @@
+{
+  "name": "mentor-bridge",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "npm --prefix apps/web run dev",
+    "build": "npm --prefix apps/web run build",
+    "start": "npm --prefix apps/web run start"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "mentorbridge-web",
+  "version": "1.0.0",
+  "homepage": "https://Indhumathi37.github.io/Mentor_Bridge",``
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "start": "vite preview",
+    "predeploy": "npm run build",
+  "deploy": "gh-pages -d dist"
+}
+  },
+  "dependencies": {
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.0.4",
+    "vite": "^7.1.7"
+  }
+}
